@@ -2,8 +2,6 @@
 require_once('Solution.php');
 use Solution\Solution;
 
-$arr=[1,2,3,1];
-$arr=[2,7,9,3,1];
 $arr=[2,5,7,6,11,8,1,3,4];
 $re=rob($arr);
 function rob($arr)
