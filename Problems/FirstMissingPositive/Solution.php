@@ -16,23 +16,20 @@ class Solution
         if (count($nums)==1) {
             return ($nums[0]< 0 || $nums[0]-1 >0) ?1:$nums[0]+1;
         }
-        $nums[]=-1;
         $nums=array_unique($nums);
         $count=count($nums);
         sort($nums);
-        print_r($nums);exit;
-        for ($i=0;$i<$count-2;++$i) {
-            if ($nums[$i]<=0) {
-                if ($nums[$i+1] > 1) {
-                    return 1;
-                }
-            } elseif ($nums[$i+1]-$nums[$i]>1) {
-                return $nums[$i]+1;
-            }
-        }
-        if ($nums[$count-1]>0) {
-            return $nums[$count-1]+1;
-        }
-        return 1;
+         $list=array_map(function($el){
+           if($el>0) return $el;
+         },$nums);
+           $count=count($list);
+         if($count==0 || $list[0]>1) return 1;
+         for($i=0,$list[$count]=$list[$count-1]+1;$i<$count;$i++){
+           if($list[$i+1]-$list[$i]>1){
+             return $list[$i]+1;
+           }
+         }
+
+         return $list[$count];
     }
 }
